@@ -48,13 +48,13 @@ esac
 
 
 config_i2p(){
-echo "Configuring I2P"
+echo "Configuring I2P" 2>&1 | tee -a $LOGPATH
 #launching i2p to copy user config files
 systemctl start i2p
 sleep 5
 systemctl stop i2p
 
-echo "Changing I2Ps Default Router Config to our needs"
+echo "Changing I2Ps Default Router Config to our needs" 2>&1 | tee -a $LOGPATH
 # This must be set in order for the i2p init script to work
 sed -i 's/^RUN_DAEMON=.*$/RUN_DAEMON="true"/' /etc/default/i2p
 
@@ -77,7 +77,7 @@ sed -i 's|^clientApp\.0\.args=7657\s\+::1,127\.0\.0\.1|clientApp.0.args=7657 127
 # Disable IPv6 in the wrapper
 sed -i 's|^.*\(wrapper\.java\.additional\.5=-Djava\.net\.preferIPv4Stack=\).*|\1true|' "$WRAPPER"
 sed -i 's|^.*\(wrapper\.java\.additional\.6=-Djava\.net\.preferIPv6Addresses=\).*|\1false|' "$WRAPPER"
-echo "Changing I2Ps listening IP"
+echo "Changing I2Ps listening IP" 2>&1 | tee -a $LOGPATH
 #Change the Listening IP from Localhost to the Whonix-Gateway Ip
 sed -i "s/\(.*interface=\).*/\1$GATEWAYIP/g;s/\(.*targetHost=\).*/\1$GATEWAYIP/g" "$I2P/i2ptunnel.config"
 sed -i "s/127\.0\.0\.1/$GATEWAYIP/g" "$I2P/clients.config"

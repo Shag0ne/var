@@ -44,6 +44,7 @@ esac
 }
 
 install_i2p() {
+echo "---- Log start $(date) ----" >> $LOGPATH
 echo "Installing I2P " 2>&1 | tee -a $LOGPATH
 
 #Add I2P Repo
@@ -189,10 +190,17 @@ SOCKS_PORT_I2P_POP=7660
 SOCKS_PORT_I2P_BOTESMTP=7661
 SOCKS_PORT_I2P_BOTEIMAP=7662
 SOCKS_PORT_I2P_MTN=8998
+GATEWAY_TRANSPARENT_DNS=1
+GATEWAY_TRANSPARENT_TCP=1
 EOF
-echo "[Adding I2P Ports to Firewall Rulea] OK" 2>&1 | tee -a $LOGPATH
+echo "[Adding I2P Ports to Firewall Rules] OK" 2>&1 | tee -a $LOGPATH
 fi
 
+echo "Enabling Whonix-Gateways Own Traffic Transparent Proxy feature"
+cat >> "/etc/tor/torrc"<<EOF
+TransPort 127.0.0.1:9041
+DnsPort 127.0.0.1:54
+EOF
 
 
 echo "Reloading Whonix Firewall" 2>&1 | tee -a $LOGPATH
