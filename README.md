@@ -4,7 +4,7 @@
 This Repo is just a dumping ground for all sort of files, they may not work or/and could break your system !!
 ### ToDo:
 - fix reseed using http://trac.i2p2.i2p/ticket/1130
-- add proper login and error handling
+- add proper logs and error handling
 - fix tunnel build notification
 - add autostart
 - rework folders and script
@@ -16,7 +16,7 @@ This Repo is just a dumping ground for all sort of files, they may not work or/a
 - msg whonix and find testers
 As soon as everything works  I will delete this repo and create a proper one with instructions...
 #### Note :
-###			Currently it's not working , Bug reports/PR's welcome
+###			Currently it's working but still has some Issues, Bug reports/PR's welcome
 ## Testing/Setup
 ### [Qubes OS only]
 - Clone your existing Whonix Gateway and Worksation Templates
